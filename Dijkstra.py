@@ -58,17 +58,44 @@ grafo = {
     'agrolandia':{'atalanta':65,'salete':60}
 }
 
-os.system('cls')
-op = 'S'
-while op == 'S':
-    partida = input(F"Informe qual a cidade de partida: ")
-    chegada = input(F"Informe qual a cidade de destino: ")
+def limpa_tela():
     os.system('cls')
-    distancia, caminho = dijkstra(grafo, partida, chegada)
-    caminho_lista = ' --> '.join(caminho)
-    print(f"Distância mais curta de {partida} até {chegada}: {distancia}")
-    print(f"Caminho: {caminho_lista}")
-    print('Pressione qualquer botão para continuar ')
-    msvcrt.getch()
-    os.system('cls')
-    op = input('Deseja fazer outra consulta? (S ou N): ')
+
+def exe_com_dijkstra():
+    op = 's'
+    while op == 's':
+        limpa_tela()
+        partida = input(F"Informe qual a cidade de partida: ")
+        chegada = input(F"Informe qual a cidade de destino: ")
+        if partida not in grafo or chegada not in grafo:
+            print("Cidades inválidas. Tente novamente.")
+            msvcrt.getch()           
+            continue
+        limpa_tela()
+        distancia, caminho = dijkstra(grafo, partida, chegada)
+        caminho_lista = ' --> '.join(caminho)
+        print(f"Distância mais curta de {partida} até {chegada}: {distancia}")
+        print(f"Caminho: {caminho_lista}")
+        print('Pressione qualquer botão para continuar ')
+        msvcrt.getch()
+        limpa_tela()
+        op = input('Deseja fazer outra consulta? (S ou N): ')
+
+def informacoes():
+    print("Informações gerais: ")
+    print("Este projeto foi desenvolvido por: William Wollert \n")
+    print("AVISO: Os dados utilizados neste programa são FICTICIOS")
+    print("Portanto não devem ser considerados para uso real \n")
+    print("É possivel utilizar dados reais neste projeto?")
+    print("Sim, é possivel, este projeto foi apenas uma demonstração do algoritmo de Dijkstra \n")
+    input("Pressione Enter para continuar...")
+
+def encerra_programa():
+    print("Encerrando o programa...")
+    exit(0)
+
+menu = ConsoleMenu("Menu Principal", "Escolha uma das opções abaixo:",show_exit_option=False)
+menu.append_item(FunctionItem("Executar programa", exe_com_dijkstra))
+menu.append_item(FunctionItem("Informações do programa", informacoes))
+menu.append_item(FunctionItem("Encerrar programa", encerra_programa))
+menu.show()
