@@ -1,4 +1,8 @@
 import heapq
+import os
+import msvcrt
+from consolemenu import *
+from consolemenu.items import *
 
 def dijkstra(grafo, ini, fim):
     distancias = {no: float('infinity') for no in grafo}
@@ -54,11 +58,17 @@ grafo = {
     'agrolandia':{'atalanta':65,'salete':60}
 }
 
+os.system('cls')
 op = 'S'
 while op == 'S':
     partida = input(F"Informe qual a cidade de partida: ")
     chegada = input(F"Informe qual a cidade de destino: ")
+    os.system('cls')
     distancia, caminho = dijkstra(grafo, partida, chegada)
+    caminho_lista = ' --> '.join(caminho)
     print(f"Distância mais curta de {partida} até {chegada}: {distancia}")
-    print(f"Caminho: {caminho}")
-    op = input('Deseja fazer outra consulta? (S ou N)')
+    print(f"Caminho: {caminho_lista}")
+    print('Pressione qualquer botão para continuar ')
+    msvcrt.getch()
+    os.system('cls')
+    op = input('Deseja fazer outra consulta? (S ou N): ')
