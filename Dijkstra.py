@@ -1,9 +1,11 @@
+#Bibliotecas utilizadas no algoritmo
 import heapq
 import os
 import msvcrt
 from consolemenu import *
 from consolemenu.items import *
 
+#Algoritmo de Dijkstra
 def dijkstra(grafo, ini, fim):
     distancias = {no: float('infinity') for no in grafo}
     distancias[ini] = 0
@@ -40,6 +42,7 @@ def dijkstra(grafo, ini, fim):
 
     return (distancias[fim], caminho)
 
+#Grafo utilizado (AVISO: AS INFORMAÇÕES NÂO CONDIZEM COM A REALIDADE)
 grafo = {
     'rio do sul': {'taio':66,'aurora':132,'ituporanga':132,'agronomica':231,'mirim doce':363,'presidente getulio':231},
     'taio': {'rio do sul':66,'pouso redondo':90,'aurora':30,'ibirama':240,'laurentino':120},
@@ -58,9 +61,11 @@ grafo = {
     'agrolandia':{'atalanta':65,'salete':60}
 }
 
+#Procedimento para limpar o console
 def limpa_tela():
     os.system('cls')
 
+#Procedimento para executar o algoritmo de Dijkstra e receber as informações necessarias para o funcionamento
 def exe_com_dijkstra():
     op = 's'
     while op == 's':
@@ -81,6 +86,7 @@ def exe_com_dijkstra():
         limpa_tela()
         op = input('Deseja fazer outra consulta? (S ou N): ')
 
+#Procedimento com as informações gerais e avisos do algoritmo
 def informacoes():
     print("Informações gerais: ")
     print("Este projeto foi desenvolvido por: William Wollert \n")
@@ -90,10 +96,12 @@ def informacoes():
     print("Sim, é possivel, este projeto foi apenas uma demonstração do algoritmo de Dijkstra \n")
     input("Pressione Enter para continuar...")
 
+#Procedimento para encerrar o algoritmo
 def encerra_programa():
     print("Encerrando o programa...")
     exit(0)
 
+#Menu visual utilizando o Console Menu
 menu = ConsoleMenu("Menu Principal", "Escolha uma das opções abaixo:",show_exit_option=False)
 menu.append_item(FunctionItem("Executar programa", exe_com_dijkstra))
 menu.append_item(FunctionItem("Informações do programa", informacoes))
