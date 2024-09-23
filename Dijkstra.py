@@ -1,7 +1,6 @@
 #Bibliotecas utilizadas no algoritmo
 import heapq
 import os
-import msvcrt
 from consolemenu import *
 from consolemenu.items import *
 
@@ -73,16 +72,14 @@ def exe_com_dijkstra():
         partida = input(F"Informe qual a cidade de partida: ")
         chegada = input(F"Informe qual a cidade de destino: ")
         if partida not in grafo or chegada not in grafo:
-            print("Cidades inválidas. Tente novamente.")
-            msvcrt.getch()           
+            input('Cidades inválidas. Pressione Enter para inserir novamente')         
             continue
         limpa_tela()
         distancia, caminho = dijkstra(grafo, partida, chegada)
         caminho_lista = ' --> '.join(caminho)
         print(f"Distância mais curta de {partida} até {chegada}: {distancia}")
         print(f"Caminho: {caminho_lista}")
-        print('Pressione qualquer botão para continuar ')
-        msvcrt.getch()
+        input('Pressione Enter para continuar...')
         limpa_tela()
         op = input('Deseja fazer outra consulta? (S ou N): ')
 
