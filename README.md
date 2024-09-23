@@ -15,5 +15,4 @@ Foram utilizados quatro bibliotecas:
 
 -heapq
 -os
--msvcrt
 -consolemenu
